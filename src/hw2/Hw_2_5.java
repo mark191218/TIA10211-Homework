@@ -5,10 +5,11 @@ public class Hw_2_5 {
 	public static void main(String[] args) {
 		// hw 2-5 1~49中剔除有4的數字，輸出結果，並計算有幾個數字
 		int count = 0;
+		int removeNum = 4;
 
 		System.out.print("可選擇數字:");
 		for (int i = 1; i <= 49; i++) {
-			if (((i - 4) % 10 != 0) && (i / 40 != 1)) {
+			if ((i % 10 != removeNum) && ((i / 10) % 10 != removeNum)) {
 				System.out.print(i + " ");
 				count++;
 			}
