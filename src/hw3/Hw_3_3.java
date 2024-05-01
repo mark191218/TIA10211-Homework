@@ -6,14 +6,12 @@ import java.util.Arrays;
 public class Hw_3_3 {
 
 	public static void main(String[] args) {
-		// 產生一個1~49的隨機亂數
-
 		// 讀取鍵盤輸入數值
 		Scanner s = new Scanner(System.in);
 		System.out.println("阿文...請輸入你討厭哪個數字");
 		int removeNum = s.nextInt();
 
-//		int removeNum = 3;
+		// 判斷不要的數字，並統計可用數字數量
 		int count = 0;
 		int[] lottoNumber = new int[49];
 		for (int i = 0; i < lottoNumber.length; i++) {
@@ -25,45 +23,30 @@ public class Hw_3_3 {
 		}
 		System.out.println();
 
-//		Hw_3_3.showArray(lottoNumber);
 		Hw_3_3.showArray(lottoNumber);
-		System.out.println("總共有" + count + "個數字可選");
+		System.out.println("總共有" + count + "個數字可選\n");
 
-		int[] out = new int[6];
-//		int[] out = {1,2,3,4,5,6};
-//
-		int k = 0;
-		boolean display = true;
-		boolean hasDuplicates = false;
-		while (display) {
-//			int random = (int) (Math.random() * count) + 1;
-
-			for (int i = 0; i < out.length; i++) {
-				int random = (int) (Math.random() * count) + 1;
-				out[i] = lottoNumber[random];
-			}
-			Arrays.sort(out);
-
-			for (int i = 0; i < out.length - 1; i++) {
-				if (out[i] == out[i + 1]) {
-					hasDuplicates = true;
-					System.out.println("Number repeat");
+		// 隨機產生六個可選數字，並排序後輸出
+		int[] randomLotto = new int[6];
+		for (int i = 0; i < 6; i++) {
+			while (true) {
+				int random = (int) (Math.random() * count) + 1; // 產生一個隨機亂數
+				// 判斷亂數選出的數字是否能用(數字不為0)
+				if (lottoNumber[random] != 0) {
+					randomLotto[i] = lottoNumber[random];
+					lottoNumber[random] = 0; // 將使用過的數字清為0，避免下次重複選到
 					break;
 				}
 			}
-			
-			if (hasDuplicates == false) {
-				display = false;
-			}
-
 		}
-
-		Hw_3_3.showArray(out);
+		Arrays.sort(randomLotto);
+		System.out.println("隨機選號:");
+		Hw_3_3.showArray(randomLotto);
 
 	}
 
 	public static void showArray(int[] lottoNumber) {
-		// print array
+		// print array，數值為0的元素就不輸出
 		for (int i = 0; i < (lottoNumber.length); i++) {
 			if (lottoNumber[i] == 0)
 				break;

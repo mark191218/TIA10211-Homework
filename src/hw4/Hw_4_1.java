@@ -7,7 +7,7 @@ public class Hw_4_1 {
 		double sum = 0.0;
 		double average = 0.0;
 		for (int i = 0; i < num.length; i++) {
-			sum = sum + num[i];
+			sum += num[i];
 		}
 		average = sum / num.length;
 
